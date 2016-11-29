@@ -1,10 +1,10 @@
 from nicer.bits import hex_dump, to_string_hex
-from pkt.mixins import ComparableMixin
+from .mixins import ComparableMixin
 
 __author__ = 'netanelrevah'
 
 
-class Packet(object, ComparableMixin):
+class Packet(ComparableMixin, object):
     def __init__(self, data: bytes):
         self.data = data
 
