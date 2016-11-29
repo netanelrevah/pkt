@@ -5,7 +5,7 @@ __author__ = 'netanelrevah'
 
 
 class Packet(ComparableMixin, object):
-    def __init__(self, data: bytes):
+    def __init__(self, data):
         self.data = data
 
     def __len__(self):

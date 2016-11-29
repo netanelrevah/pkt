@@ -1,2 +1,5 @@
+from pkt.core import Packet
+
+
 def test_nothing():
-    assert True
+    assert Packet(b"123")
