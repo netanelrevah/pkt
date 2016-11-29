@@ -1,0 +1,22 @@
+language: python
+python: 3.5
+env:
+- TOX_ENV=py35
+- TOX_ENV=py34
+- TOX_ENV=py33
+- TOX_ENV=py32
+- TOX_ENV=py27
+- TOX_ENV=py26
+install:
+- pip install tox
+script:
+- tox -e $TOX_ENV
+deploy:
+  provider: pypi
+  user: code-museum
+  password:
+    secure: UMAPG4rvgBRU2JytUdTKkZQlRFG4uNZ0JucBdhFQNfG0Ogu396Ua2SHHrchJwybe6ddCmTMu/eeWB3PWTkS+ZKeJ39Uf+W25IM8VHRWAjj9itS2P8V9emEmwp2/C7O+Q+pG3izLzVHu1bU/pPrMEd32gzVZlWcxFp/xfPQHeM0HUNIPzPfM7tr8vIEHRo0sgHY++miHBPX00dTVobUBYyj/ycc/o52M+iiG68kN61IAXi4f/PGXw7ibhdniKxRHaCSqcieD2+teAUrD8EtvseohbeC5zoWA9pc1Sa+FulRouCV+Vi9YMdqeRS0T74B+y425uBcE7yfMAXJ+O5XXymDK2473RIhj+GVjccoYs5XWmxS75RCHiOXV9iMXsZOXsXAi/llGTrDL3PzKHmJG3tlFzXW1hn3eG9t+VMxL0hAfURgFPiAOm4VBIjwubQr9mjEP/kKsvFqeT66blc28Ghcz9AsT5+WeqwvDDbhpwJkGRIPaFMPIzN1rrW7d+nsbKJ9Bk+q7D6PKjKazGXVbue85e1yt3JD82lWPj/iNap+YFERYA90S6u2WWG4UetxclpPKQy/I9yVPPwdGwH0JNVTN+ZfMQBzUukmQhJgFFSAatL+UJctN+d0Aj+CLxAaYp+Mf/5r/qGWVD4pXFQuljF7fB9iQ1ciHJRF1V5SVr9so=
+  on:
+    tags: true
+    distributions: sdist bdist_wheel
+    repo: netanelrevah/pkt
