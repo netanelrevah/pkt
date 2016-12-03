@@ -26,5 +26,5 @@ class Packet(ComparableMixin, object):
     def hex_dump(self):
         return hex_dump(self.data)
 
-    def to_immutable(self):
+    def to_comparable(self):
         return self.data
