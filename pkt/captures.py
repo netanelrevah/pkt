@@ -2,7 +2,7 @@ import datetime
 
 from nicer.times import datetime_from_timestamp, current_datetime
 from pkt import Packet
-from pkt.mixins import ComparableMixin
+from nicer.eqs import ComparableMixin
 
 __author__ = 'netanelrevah'
 
