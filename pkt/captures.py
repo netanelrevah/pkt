@@ -1,8 +1,8 @@
 import datetime
 
-from nicer.times import datetime_from_timestamp, current_datetime
-from pkt import Packet
 from nicer.eqs import ComparableMixin
+from nicer.times import Timestamp
+from . import Packet
 
 __author__ = 'netanelrevah'
 
@@ -16,11 +16,13 @@ class CapturedPacket(Packet):
     @staticmethod
     def _normalize_capture_time(capture_time=None):
         if capture_time is None:
-            return current_datetime()
-        if isinstance(capture_time, datetime.datetime):
+            return Timestamp.now()
+        if isinstance(capture_time, Timestamp):
             return capture_time
+        if isinstance(capture_time, datetime.datetime):
+            return Timestamp.from_datetime(capture_time)
         if isinstance(capture_time, int) or isinstance(capture_time, float):
-            return datetime_from_timestamp(capture_time)
+            return Timestamp.from_timestamp(capture_time)
         raise TypeError('capture_time must be timestamp (int or float), datetime.datetime or None (for current_time)')
 
     @staticmethod
@@ -53,7 +55,7 @@ class NetworkCapture(ComparableMixin):
         self.environment = environment
 
     def to_comparable(self):
-        return self.captured_packets
+        return self.captured_packets, self.environment
 
     def __len__(self):
         return len(self.captured_packets)
