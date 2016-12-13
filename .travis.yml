@@ -21,4 +21,4 @@ deploy:
   on:
     branch: develop
     distributions: "sdist bdist_wheel"
-    repo: netanelrevah/nicer
+    repo: netanelrevah/pkt
