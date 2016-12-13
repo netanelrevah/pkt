@@ -5,18 +5,20 @@ env:
 - TOX_ENV=py34
 - TOX_ENV=py33
 - TOX_ENV=py27
-- TOX_ENV=py26
 install:
 - pip install tox
 script:
 - tox -e $TOX_ENV
+before_deploy:
+- chmod ugo+x ./scripts/change_version.sh
+- ./scripts/change_version.sh $TRAVIS_BUILD_NUMBER
 deploy:
   provider: pypi
   user: code-museum
   password:
     secure: KVLQnyaSM8O6Qah3ohPqcPlrMZ3r1fnk9TOou2P3JR5Fj2X5C5DYd6ejcIp/dEILmo7iNCoe6zMYSDF+gSepxdE28iekNXgIM7HliUEfB1Joe2baPqeQU18PhEHNhHszJ1gReck6+D/2YN8UNr0Vj2lsTBw8W+0DsEEwRk41VE2fk6O3semPSJf7Q34ftR4UL3G5XsfOb9lw9oPf87vQDTOuZiC8WzXpDpvO5jLkuk+CaWEEihlyuWEDCrpbqyPNCjhmRzAIDVfUyApQphe00E9RTQx39YpGiByB4k2jE8nmbTiSASspLuyXIdm4ayV/2PumP9vHyVqoXLdtrlu8Wna2At0V3NmA1Ef/i6P0YcNTx3Kwvd73Cm4TGWeR7+ZQtCVNfc65sd192EmFonUBGakgpZYjYYJXIrrmoZ8TQEMuC9uYGm+RaO76t1c9v85jr/oou6TSpi5X8oku9F2PIEbpNG0IJoeND0y6w6gkvd4n0jmBiJrq4zl4IlqG5qfQQ+tFd368Pb+NV2gv/ZzeGkMULwzjvnOb7qEPGMX9K2iQZ4s55K+2ZXhj7R1HFttFgpJNvdoQWea6wP4cB3/8+2d+V9NvP3RGlNXVQnye7YnnHI8cTZ/qAe3W0FlAj/VJR/MtyEKz+XkLzExMxLuWRg8fIIql1ykYEnacEmInI6E=
+  skip_cleanup: true
   on:
-    tags: true
-    distributions: sdist bdist_wheel
-    repo: netanelrevah/pkt
     branch: develop
+    distributions: "sdist bdist_wheel"
+    repo: netanelrevah/nicer
