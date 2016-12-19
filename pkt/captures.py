@@ -1,4 +1,5 @@
 import datetime
+from typing import List
 
 from nicer.eqs import ComparableMixin
 from nicer.times import Timestamp
@@ -51,6 +52,7 @@ class CaptureEnvironment(object):
 
 class NetworkCapture(ComparableMixin):
     def __init__(self, captured_packets=None, environment=None):
+        # type: (List[CapturedPacket], CaptureEnvironment) -> None
         self.captured_packets = captured_packets if captured_packets is not None else []
         self.environment = environment
 
